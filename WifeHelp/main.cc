@@ -12,8 +12,9 @@ int main()
 	int birthYear;
 	int birthMonth;
 	int birthDay;
+	int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-	cout << "Welkom in de toelatingsprogramma van Universiteit Leiden. Wij willen graag uw leeftijd weten.";
+	cout << "Welkom in de toelatingsprogramma van Universiteit Leiden. Wij willen graag uw leeftijd weten." << endl;
 	cout << "Type in uw geboortejaar en druk Enter." << endl;
 	cin >> birthYear;
 
@@ -35,7 +36,13 @@ int main()
 		}
 		return 1;
 	}
-	cout << "Type nu uw geboortemaand in cijfers en druk Enter.";
+	if((birthYear >= 1901 && birthYear <= 2099) && birthYear%4 == 0)
+	{
+		cout << "Leapyear!" << (birthYear%4) << endl;
+		daysInMonth[1] = 29;
+	}
+
+	cout << "Type nu uw geboortemaand in cijfers en druk Enter." << endl;
 	cout << "Bv. januari= 1, februari= 2, maart= 3, etc." << endl;
 	cin >> birthMonth;
 
@@ -47,10 +54,9 @@ int main()
 
 	cout << "Type nu uw geboortedag in cijfers en druk Enter." << endl;
 	cin >> birthDay;
-
-	if(birthDay <= 0 || birthDay > 31)
+	if((birthDay > daysInMonth[birthMonth - 1]) || birthDay < 1)
 	{
-		cout << "Deze dag van de maand bestaat niet. Dit is het einde van dit programma." << endl;
+		cout << "Deze dag in de maand bestaat niet. Dit is het einde van het programma." << endl;
 		return 1;
 	}
 
