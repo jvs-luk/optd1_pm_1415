@@ -20,13 +20,13 @@ int main()
 
 	int ageInYears = currentYear - birthYear;
 
-	if(ageInYears < 10 || ageInYears >= 101)
+	if(ageInYears < 10 || ageInYears > 101)
 	{
 		if(ageInYears >= 0 && ageInYears < 10)
 		{
 			cout << "U bent te jong om toegelaten te worden aan Universiteit Leiden. Dit is het einde van het programma." << endl;
 		}
-		if(ageInYears >= 101)
+		if(ageInYears > 101)
 		{
 			cout << "U bent te oud om toegelaten te worden aan Universiteit Leiden. Dit is het einde van het programma." << endl;
 		}
@@ -38,7 +38,6 @@ int main()
 	}
 	if((birthYear >= 1901 && birthYear <= 2099) && birthYear%4 == 0)
 	{
-		cout << "Leapyear!" << (birthYear%4) << endl;
 		daysInMonth[1] = 29;
 	}
 
@@ -52,11 +51,50 @@ int main()
 		return 1;
 	}
 
+	int ageInMonths= (ageInYears * 12) + (currentMonth - birthMonth);
+
+	if(ageInMonths < 120 || ageInMonths > 1212)
+	{
+		if(ageInMonths < 120)
+		{
+			cout << "U bent te jong om toegelaten te worden tot Universiteit Leiden. Dit is het einde van het programma." << endl;
+		}
+		if(ageInMonths > 1212)
+		{
+			cout << "U bent te oud om toegelaten te worden tot Universiteit Leiden. Dit is het einde van het programma." << endl;
+		}
+		return 1;
+	}
+
 	cout << "Type nu uw geboortedag in cijfers en druk Enter." << endl;
 	cin >> birthDay;
 	if((birthDay > daysInMonth[birthMonth - 1]) || birthDay < 1)
 	{
 		cout << "Deze dag in de maand bestaat niet. Dit is het einde van het programma." << endl;
+		return 1;
+	}
+
+	int ageInMonthsBasedOnDay= currentDay - birthDay;
+
+	if(ageInMonthsBasedOnDay < 0)
+	{
+		ageInMonths --;
+	}
+	else
+	{
+		ageInMonthsBasedOnDay = ageInMonths;
+	}
+
+	if(ageInMonths < 120 || ageInMonths >= 1212)
+	{
+		if(ageInMonths < 120)
+		{
+			cout << "U bent te jong om toegelaten te worden tot Universiteit Leiden. Dit is het einde van het programma." << endl;
+		}
+		if(ageInMonths >= 1212)
+		{
+			cout << "U bent te oud om toegelaten te worden tot Universiteit Leiden. Dit is het einde van het programma." << endl;
+		}
 		return 1;
 	}
 
